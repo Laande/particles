@@ -139,10 +139,32 @@ function setupEventListeners() {
 }
 
 // Color mode selector
-function setColorMode(mode) {
-    currentColorMode = mode;
+function setupColorSelector() {
+    const selector = document.getElementById('colorSelector');
+    
+    for (let mode in CONFIG.COLOR_MODES) {
+        const button = document.createElement('button');
+        button.textContent = mode;
+        
+        button.addEventListener('mousedown', e => {
+            e.stopPropagation();
+            e.preventDefault();
+        });
+        
+        button.addEventListener('click', e => {
+            e.stopPropagation();
+            e.preventDefault();
+            currentColorMode = CONFIG.COLOR_MODES[mode];
+        });
+        
+        selector.appendChild(button);
+    }
 }
 
-// Initialize
-setupEventListeners();
-animate();
+function init() {
+    setupEventListeners();
+    setupColorSelector();
+    animate();
+}
+
+init();

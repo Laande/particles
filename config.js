@@ -5,8 +5,8 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 // Mouse tracking
-let mouse = { 
-    x: -1000, 
+let mouse = {
+    x: -1000,
     y: -1000,
     leftDown: false,
     rightDown: false,
@@ -27,5 +27,4 @@ const CONFIG = {
     }
 };
 
-// Initialize color mode
 let currentColorMode = CONFIG.COLOR_MODES.GRADIENT;

@@ -2,7 +2,7 @@ class Particle {
     constructor() {
         this.minSpeed = 0.3 + Math.random() * 0.4;
         this.targetSpeed = 1.0 + Math.random() * 0.5;
-        
+
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
         this.vx = 0;
@@ -54,12 +54,12 @@ class Particle {
 
     getColor() {
         const currentSpeed = Math.hypot(this.vx, this.vy);
-        
+
         switch(currentColorMode) {
             case CONFIG.COLOR_MODES.GRADIENT:
                 const speedRatio = Math.min(1, currentSpeed / 3);
-                const hue = 200 + (360 - 200) * speedRatio;
-                return `hsla(${hue}, 85%, 65%, 0.9)`;
+                const hue = 120 * (1 - speedRatio);
+                return `hsla(${hue}, 85%, 65%, 0.9)`;                
             
             case CONFIG.COLOR_MODES.RAINBOW:
                 const rainbowHue = (this.hue + currentSpeed * 10) % 360;
@@ -68,9 +68,6 @@ class Particle {
             case CONFIG.COLOR_MODES.MONOCHROME:
                 const lightness = 50 + ((currentSpeed / 3) * 30);
                 return `hsla(200, 85%, ${lightness}%, 0.9)`;
-            
-            default:
-                return `hsla(${this.hue}, 85%, 65%, 0.9)`;
         }
     }
 }
