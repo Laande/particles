@@ -32,6 +32,13 @@ function animate() {
         const dy = mouse.y - p.y;
         const distSq = dx * dx + dy * dy;
 
+        // Mouse repulsion
+        if (distSq < CONFIG.FORCE_RADIUS * CONFIG.FORCE_RADIUS && distSq > 0) {
+            const force = (CONFIG.FORCE_RADIUS - Math.sqrt(distSq)) * CONFIG.REPULSION_FORCE;
+            p.vx -= (dx * force) / distSq;
+            p.vy -= (dy * force) / distSq;
+        }
+
         let forceX = 0, forceY = 0;
 
         // Attract
