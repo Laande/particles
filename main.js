@@ -143,27 +143,54 @@ function setupEventListeners() {
             }, 300);
         }
     });
+
+    canvas.addEventListener('touchstart', e => {
+        e.preventDefault();
+        const touch = e.touches[0];
+        mouse.x = touch.clientX;
+        mouse.y = touch.clientY;
+        mouse.leftDown = true;
+        document.querySelector('.cursor').style.opacity = '1';
+    });
+    canvas.addEventListener('touchmove', e => {
+        e.preventDefault();
+        const touch = e.touches[0];
+        mouse.x = touch.clientX;
+        mouse.y = touch.clientY;
+        document.querySelector('.cursor').style.transform =
+            `translate(${touch.clientX - 15}px, ${touch.clientY - 15}px)`;
+    });
+    ['touchend', 'touchcancel'].forEach(eventType => {
+        canvas.addEventListener(eventType, e => { 
+            e.preventDefault();
+            mouse.leftDown = false;
+            document.querySelector('.cursor').style.opacity = '0';
+        });
+    });
+    
+    document.body.style.overflow = 'hidden';
+    document.body.style.touchAction = 'none';
 }
 
 // Color mode selector
 function setupColorSelector() {
     const selector = document.getElementById('colorSelector');
-    
+
     for (let mode in CONFIG.COLOR_MODES) {
         const button = document.createElement('button');
         button.textContent = mode;
-        
+
         button.addEventListener('mousedown', e => {
             e.stopPropagation();
             e.preventDefault();
         });
-        
+
         button.addEventListener('click', e => {
             e.stopPropagation();
             e.preventDefault();
             currentColorMode = CONFIG.COLOR_MODES[mode];
         });
-        
+
         selector.appendChild(button);
     }
 }
