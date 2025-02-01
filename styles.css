@@ -1,0 +1,62 @@
+body {
+    background: black;
+    overflow: hidden;
+    cursor: none;
+}
+
+#canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.cursor {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    pointer-events: none;
+    mix-blend-mode: difference;
+    filter: drop-shadow(0 0 10px white);
+    transform: translate(-15px, -15px);
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.05s, border-color 0.5s;
+}
+
+#fpsCounter {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    color: white;
+    font-family: monospace;
+    font-size: 14px;
+    opacity: 0.5;
+    user-select: none;
+    background-color: black;
+}
+
+#colorSelector {
+    position: fixed;
+    top: 40px;
+    left: 10px;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#colorSelector button {
+    display: block;
+    margin: 5px 0;
+    padding: 5px 10px;
+    color: white;
+    background: #333;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#colorSelector button:hover {
+    background: #444;
+}
