@@ -144,6 +144,7 @@ function setupEventListeners() {
         }
     });
 
+    // Touch on mobile
     canvas.addEventListener('touchstart', e => {
         e.preventDefault();
         mouse.leftDown = false;
