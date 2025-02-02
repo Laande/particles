@@ -146,6 +146,7 @@ function setupEventListeners() {
 
     canvas.addEventListener('touchstart', e => {
         e.preventDefault();
+        mouse.leftDown = false;
         const touch = e.touches[0];
         mouse.x = touch.clientX;
         mouse.y = touch.clientY;
@@ -154,6 +155,7 @@ function setupEventListeners() {
     });
     canvas.addEventListener('touchmove', e => {
         e.preventDefault();
+        mouse.leftDown = false;
         const touch = e.touches[0];
         mouse.x = touch.clientX;
         mouse.y = touch.clientY;
